@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace EntityFramework
 {
@@ -82,6 +83,29 @@ namespace EntityFramework
             var product = query.FirstOrDefault();
             if (product != null) product.PrintInfo();
         }
+        static void UpdateProduct(int id, string newName = "", string newProvider = "")
+        {
+            var dbContext = new ProductDbContext();
+            Product product = (from p in dbContext.products
+                               where p.ProductId == id
+                               select p).FirstOrDefault();
+            if (product != null)
+            {
+                // Use Entry to prevent Update
+                // EntityEntry<Product> entry = dbContext.Entry(product);
+                // entry.State = EntityState.Detached;
+
+                if (newName != "") product.ProductName = newName;
+                if (newProvider != "") product.Provider = newProvider;
+
+                dbContext.SaveChanges();
+                ReadProduct(product.ProductId);
+            }
+            else
+            {
+                System.Console.WriteLine("Product not found");
+            }
+        }
         static void Main(string[] args)
         {
             // CreateDatabase();
@@ -90,7 +114,11 @@ namespace EntityFramework
             // InsertProduct();
 
             // ReadProducts(3);
-            ReadProduct(5);
+            // ReadProduct(5);
+
+            // UpdateProduct(6, "Product 6", "Company 6");
+            // UpdateProduct(7, "Product 7");
+            // UpdateProduct(8, newProvider: "Company 8");
         }
     }
 }
