@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
 namespace EntityFramework
@@ -61,12 +62,35 @@ namespace EntityFramework
             int numberRows = dbContext.SaveChanges();
             System.Console.WriteLine($"Inserted {numberRows} rows");
         }
+        static void ReadProducts(int limit)
+        {
+            using var dbContext = new ProductDbContext();
+
+            // var query = from product in dbContext.products
+            //             where product.ProductId >= 3
+            //             select product;
+            var query = dbContext.products.Take(limit);
+
+            query.ToList().ForEach(product => product.PrintInfo());
+        }
+        static void ReadProduct(int id)
+        {
+            using var dbContext = new ProductDbContext();
+            var query = from p in dbContext.products
+                        where p.ProductId == id
+                        select p;
+            var product = query.FirstOrDefault();
+            if (product != null) product.PrintInfo();
+        }
         static void Main(string[] args)
         {
             // CreateDatabase();
             // DropDatabase();
 
-            InsertProduct();
+            // InsertProduct();
+
+            // ReadProducts(3);
+            ReadProduct(5);
         }
     }
 }
