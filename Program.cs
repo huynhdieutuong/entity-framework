@@ -106,6 +106,23 @@ namespace EntityFramework
                 System.Console.WriteLine("Product not found");
             }
         }
+        static void DeleteProduct(int id)
+        {
+            var dbContext = new ProductDbContext();
+            Product product = (from p in dbContext.products
+                               where p.ProductId == id
+                               select p).FirstOrDefault();
+            if (product != null)
+            {
+                dbContext.Remove(product);
+                dbContext.SaveChanges();
+                System.Console.WriteLine("Product removed");
+            }
+            else
+            {
+                System.Console.WriteLine("Product not found");
+            }
+        }
         static void Main(string[] args)
         {
             // CreateDatabase();
@@ -119,6 +136,8 @@ namespace EntityFramework
             // UpdateProduct(6, "Product 6", "Company 6");
             // UpdateProduct(7, "Product 7");
             // UpdateProduct(8, newProvider: "Company 8");
+
+            DeleteProduct(8);
         }
     }
 }
