@@ -40,6 +40,7 @@ namespace EntityFramework
 
         static void Main(string[] args)
         {
+            DropDatabase();
             CreateDatabase();
         }
     }

@@ -17,6 +17,8 @@ namespace EntityFramework
         [Column(TypeName = "money")]
         public decimal Price { get; set; }
 
+        public Category Category { get; set; } // Foreign key
+
         public void PrintInfo() => System.Console.WriteLine($"{ProductId} - {Name} - {Price}");
     }
 }
