@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace EntityFramework
 {
-    public class ProductDbContext : DbContext
+    public class ShopContext : DbContext
     {
         public static readonly ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
         {
@@ -12,7 +12,9 @@ namespace EntityFramework
         });
 
         public DbSet<Product> products { get; set; }
-        private const string connectionString = "Server=TUONG\\SQLEXPRESS;Database=data01;Trusted_Connection=True;";
+        public DbSet<Category> categories { get; set; }
+
+        private const string connectionString = "Server=TUONG\\SQLEXPRESS;Database=shopdata;Trusted_Connection=True;";
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);

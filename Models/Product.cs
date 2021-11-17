@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EntityFramework
 {
-    [Table("myproduct")]
+    [Table("Product")]
     public class Product
     {
         [Key]
@@ -11,10 +11,12 @@ namespace EntityFramework
 
         [Required]
         [StringLength(50)]
-        public string ProductName { get; set; }
+        [Column("ProductName", TypeName = "ntext")]
+        public string Name { get; set; }
 
-        [StringLength(50)]
-        public string Provider { get; set; }
-        public void PrintInfo() => System.Console.WriteLine($"{ProductId} - {ProductName} - {Provider}");
+        [Column(TypeName = "money")]
+        public decimal Price { get; set; }
+
+        public void PrintInfo() => System.Console.WriteLine($"{ProductId} - {Name} - {Price}");
     }
 }
