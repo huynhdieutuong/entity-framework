@@ -22,6 +22,6 @@ namespace EntityFramework
         [Required] // required = not null => Delete Rule: Cascade
         public Category Category { get; set; } // Foreign key
 
-        public void PrintInfo() => System.Console.WriteLine($"{ProductId} - {Name} - {Price}");
+        public void PrintInfo() => System.Console.WriteLine($"{ProductId} - {Name} - {Price} - {CateId}");
     }
 }
