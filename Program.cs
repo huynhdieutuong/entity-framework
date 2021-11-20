@@ -61,8 +61,9 @@ namespace EntityFramework
             using var dbContext = new ShopContext();
             var product = (from p in dbContext.products where p.ProductId == productId select p).FirstOrDefault();
 
-            var e = dbContext.Entry(product);
-            e.Reference(p => p.Category).Load(); // to get Category info (product.Category != null)
+            // using Proxies to automatically load Reference
+            // var e = dbContext.Entry(product);
+            // e.Reference(p => p.Category).Load(); // to get Category info (product.Category != null)
 
             product.PrintInfo();
 
@@ -89,8 +90,9 @@ namespace EntityFramework
 
             System.Console.WriteLine($"{category.CategoryId} - {category.Name}");
 
-            var e = dbContext.Entry(category);
-            e.Collection(c => c.Products).Load(); // to get List products in category
+            // using Proxies to automatically load Collection
+            // var e = dbContext.Entry(category);
+            // e.Collection(c => c.Products).Load(); // to get List products in category
 
             if (category.Products != null)
             {

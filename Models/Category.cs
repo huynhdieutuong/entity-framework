@@ -18,6 +18,6 @@ namespace EntityFramework
         public string Description { get; set; }
 
         // Collect Navigation
-        public List<Product> Products { get; set; }
+        public virtual List<Product> Products { get; set; }
     }
 }

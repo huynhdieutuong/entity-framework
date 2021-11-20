@@ -20,7 +20,7 @@ namespace EntityFramework
         public int? CateId { get; set; } // Create CateId property, (int = not null) int? = null => Delete Rule: No Action
         [ForeignKey("CateId")] // Rename CategoryId to CateId
         [Required] // required = not null => Delete Rule: Cascade
-        public Category Category { get; set; } // Foreign key
+        public virtual Category Category { get; set; } // Foreign key
 
         public void PrintInfo() => System.Console.WriteLine($"{ProductId} - {Name} - {Price} - {CateId}");
     }

@@ -20,6 +20,7 @@ namespace EntityFramework
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseLoggerFactory(loggerFactory);
             optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseLazyLoadingProxies(); // if use lazyloading to load all Reference, Collection, the system will be heavy
         }
     }
 }
