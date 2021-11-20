@@ -22,6 +22,13 @@ namespace EntityFramework
         [Required] // required = not null => Delete Rule: Cascade
         public virtual Category Category { get; set; } // Foreign key
 
+        // To create one product can belong to two categories
+        public int? CateId2 { get; set; }
+        [ForeignKey("CateId2")]
+        // [Required] // The 2nd category is not required
+        [InverseProperty("Products")] // to Category know, use this FK
+        public virtual Category Category2 { get; set; } // The 2nd Foreign key
+
         public void PrintInfo() => System.Console.WriteLine($"{ProductId} - {Name} - {Price} - {CateId}");
     }
 }
