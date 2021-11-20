@@ -76,10 +76,38 @@ namespace EntityFramework
                 System.Console.WriteLine("Category == null");
             }
         }
+        static void ReadCategory(int categoryId)
+        {
+            using var dbContext = new ShopContext();
+            var category = (from c in dbContext.categories where c.CategoryId == categoryId select c).FirstOrDefault();
+
+            if (category == null)
+            {
+                System.Console.WriteLine("Category not found");
+                return;
+            }
+
+            System.Console.WriteLine($"{category.CategoryId} - {category.Name}");
+
+            var e = dbContext.Entry(category);
+            e.Collection(c => c.Products).Load(); // to get List products in category
+
+            if (category.Products != null)
+            {
+                System.Console.WriteLine($"Count: {category.Products.Count}");
+                category.Products.ForEach(p => p.PrintInfo());
+            }
+            else
+            {
+                System.Console.WriteLine("Products == null");
+            }
+        }
         static void Main(string[] args)
         {
             // InsertData();
             // ReadProduct(2);
+
+            ReadCategory(1);
         }
     }
 }
