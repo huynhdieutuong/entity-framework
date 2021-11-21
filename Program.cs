@@ -9,7 +9,8 @@ namespace EntityFramework
     {
         static void Main(string[] args)
         {
-
+            using var dbContext = new WebContext();
+            dbContext.Database.EnsureCreated();
         }
     }
 }
