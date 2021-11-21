@@ -81,6 +81,12 @@ namespace EntityFramework
             3. Save to file:
                 `````` dotnet ef migrations script -o migrations.sql
             */
+
+
+            // Migration: code => database
+            // Scaffold: database => code
+            // dotnet ef dbcontext scaffold -o Models -d "sqlConnectString" "Microsoft.EntityFrameworkCore.SqlServer"
+            // dotnet ef dbcontext scaffold -o Models -d "Server=TUONG\SQLEXPRESS;Database=xtlab;Trusted_Connection=True;" "Microsoft.EntityFrameworkCore.SqlServer"
         }
     }
 }
