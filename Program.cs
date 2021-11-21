@@ -53,6 +53,8 @@ namespace EntityFramework
             dbContext.Add(new Product() { Name = "Dell XPS", Price = 1800, Category = c2 });
             dbContext.Add(new Product() { Name = "Hp Pavilion", Price = 600, Category = c2 });
             dbContext.Add(new Product() { Name = "Nokia 3310", Price = 100, Category = c1 });
+            dbContext.Add(new Product() { Price = 500, Category = c2 });
+
 
             dbContext.SaveChanges();
         }
@@ -118,9 +120,9 @@ namespace EntityFramework
         }
         static void Main(string[] args)
         {
-            // DropDatabase();
-            // CreateDatabase();
-            // InsertData();
+            DropDatabase();
+            CreateDatabase();
+            InsertData();
             // ReadProduct(2);
 
             // ReadCategory(1);

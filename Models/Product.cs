@@ -3,10 +3,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EntityFramework
 {
-    [Table("Product")]
+    // 1. [Table("Product")]
     public class Product
     {
-        [Key]
+        // 2. [Key]
         public int ProductId { get; set; }
 
         [Required]
@@ -18,15 +18,14 @@ namespace EntityFramework
         public decimal Price { get; set; }
 
         public int? CateId { get; set; } // Create CateId property, (int = not null) int? = null => Delete Rule: No Action
-        [ForeignKey("CateId")] // Rename CategoryId to CateId
-        [Required] // required = not null => Delete Rule: Cascade
+        // 4. [ForeignKey("CateId")] // Rename CategoryId to CateId
+        // 5. [Required] // required = not null => Delete Rule: Cascade
         public virtual Category Category { get; set; } // Foreign key
 
         // To create one product can belong to two categories
         public int? CateId2 { get; set; }
-        [ForeignKey("CateId2")]
-        // [Required] // The 2nd category is not required
-        [InverseProperty("Products")] // to Category know, use this FK
+        // [ForeignKey("CateId2")]
+        // 7. [InverseProperty("Products")] // to Category know, use this FK
         public virtual Category Category2 { get; set; } // The 2nd Foreign key
 
         public void PrintInfo() => System.Console.WriteLine($"{ProductId} - {Name} - {Price} - {CateId}");
