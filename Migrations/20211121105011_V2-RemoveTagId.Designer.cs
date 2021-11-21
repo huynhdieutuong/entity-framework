@@ -3,14 +3,16 @@ using EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EntityFramework.Migrations
 {
     [DbContext(typeof(WebContext))]
-    partial class WebContextModelSnapshot : ModelSnapshot
+    [Migration("20211121105011_V2-RemoveTagId")]
+    partial class V2RemoveTagId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,7 +38,7 @@ namespace EntityFramework.Migrations
 
             modelBuilder.Entity("EntityFramework.Tag", b =>
                 {
-                    b.Property<int>("TagId")
+                    b.Property<int>("NewTagId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -44,7 +46,7 @@ namespace EntityFramework.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("ntext");
 
-                    b.HasKey("TagId");
+                    b.HasKey("NewTagId");
 
                     b.ToTable("Tag");
                 });

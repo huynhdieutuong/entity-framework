@@ -49,6 +49,17 @@ namespace EntityFramework
                 1. Update migration V0: dotnet ef database update V0
                 2. Check status: dotnet ef migrations list => (V0 | V1 (Pending))
             */
+
+
+            /*
+            Want to change PK "string TagId" -> "int TagId"
+                1. Comment "string TagId", create "int NewTagId"
+                2. Create new migration: dotnet ef migrations add V2-RemoveTagId
+                3. Update migration V2-RemoveTagId: dotnet ef database update
+                4. Create new migration: dotnet ef migrations add V2-RenameTagId
+                5. Update migration V2-RenameTagId: dotnet ef database update
+
+            */
         }
     }
 }

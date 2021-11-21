@@ -6,9 +6,14 @@ namespace EntityFramework
     [Table("Tag")]
     public class Tag
     {
+        // 1. [Key]
+        // [StringLength(20)]
+        // public string TagId { get; set; }
+
+        // 4. [Key]
+        // public int NewTagId { get; set; }
         [Key]
-        [StringLength(20)]
-        public string TagId { get; set; }
+        public int TagId { get; set; }
 
         [Column(TypeName = "ntext")]
         public string Content { get; set; }
