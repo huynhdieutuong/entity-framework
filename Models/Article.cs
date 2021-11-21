@@ -10,6 +10,6 @@ namespace EntityFramework
         public int ArticleId { get; set; }
 
         [StringLength(100)]
-        public string Title { get; set; }
+        public string Name { get; set; }
     }
 }

@@ -37,6 +37,18 @@ namespace EntityFramework
                 `````` dotnet ef database drop -f
                 => Drop database
             */
+
+
+            /* 
+            If a model change (Name -> Title):
+                1. Create new migration: dotnet ef migrations add V1
+                2. Check status: dotnet ef migrations list => (V0 | V1 (Pending))
+                3. Update migration V1: dotnet ef database update => Database updated (V0 | V1)
+
+            Want to restore V0:
+                1. Update migration V0: dotnet ef database update V0
+                2. Check status: dotnet ef migrations list => (V0 | V1 (Pending))
+            */
         }
     }
 }
