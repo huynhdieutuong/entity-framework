@@ -69,6 +69,18 @@ namespace EntityFramework
                 3. Create new migration: dotnet ef migrations add V3
                 4. Update migration V3: dotnet ef database update
             */
+
+
+            /*
+            1. Create script for all migrations:
+                `````` dotnet ef migrations script
+            
+            2. Create script from migration Name1 to migration Name2:
+                `````` dotnet ef migrations script Name1 Name2
+
+            3. Save to file:
+                `````` dotnet ef migrations script -o migrations.sql
+            */
         }
     }
 }
