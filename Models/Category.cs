@@ -19,5 +19,12 @@ namespace EntityFramework
 
         // Collect Navigation
         public virtual List<Product> Products { get; set; }
+
+        // Divide these properties (columns) to another table:
+        // public int UserId { get; set; }
+        // public DateTime Created { get; set; }
+        // public DateTime Updated { get; set; }
+        // public int CountProduct { get; set; }
+        public CategoryDetail categoryDetail { get; set; } // Relative CategoryDetail
     }
 }

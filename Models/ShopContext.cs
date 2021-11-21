@@ -13,6 +13,7 @@ namespace EntityFramework
 
         public DbSet<Product> products { get; set; }
         public DbSet<Category> categories { get; set; }
+        public DbSet<CategoryDetail> categoryDetails { get; set; }
 
         private const string connectionString = "Server=TUONG\\SQLEXPRESS;Database=shopdata;Trusted_Connection=True;";
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -65,6 +66,18 @@ namespace EntityFramework
                       .HasMaxLength(60)
                       .IsRequired(false)
                       .HasDefaultValue("Default Name");
+            });
+
+            // ****** Only using Fluent Api when Attribute not support
+            // Such as: want divide a table to 2 tables => setup Relative 1 - 1
+            modelBuilder.Entity<CategoryDetail>(entity =>
+            {
+                entity.ToTable("CategoryDetail");
+
+                entity.HasOne(cd => cd.category)
+                      .WithOne(c => c.categoryDetail)
+                      .HasForeignKey<CategoryDetail>(cd => cd.CategoryDetailId)
+                      .OnDelete(DeleteBehavior.Cascade);
             });
 
         }
