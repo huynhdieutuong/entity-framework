@@ -87,6 +87,20 @@ namespace EntityFramework
             // Scaffold: database => code
             // dotnet ef dbcontext scaffold -o Models -d "sqlConnectString" "Microsoft.EntityFrameworkCore.SqlServer"
             // dotnet ef dbcontext scaffold -o Models -d "Server=TUONG\SQLEXPRESS;Database=xtlab;Trusted_Connection=True;" "Microsoft.EntityFrameworkCore.SqlServer"
+
+
+            /*
+            After scaffold:
+                1. Create migration: dotnet ef migrations add V0
+                2. dotnet ef database update => it's error because there was a database before
+                
+                => Need sync code with database
+                3. Create script to sync history in database: dotnet ef migrations script -o 1.sql
+                4. Query in database to insert history:
+                    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+                    VALUES (N'20211121151846_V0', N'5.0.0');
+                => Sync history success
+            */
         }
     }
 }
