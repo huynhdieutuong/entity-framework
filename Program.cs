@@ -60,6 +60,15 @@ namespace EntityFramework
                 5. Update migration V2-RenameTagId: dotnet ef database update
 
             */
+
+
+            /*
+            To set Relative: Many - Many for Article & Tag
+                1. Create new model ArticleTag
+                2. Create index for TagId, ArticleId by using Fluent API
+                3. Create new migration: dotnet ef migrations add V3
+                4. Update migration V3: dotnet ef database update
+            */
         }
     }
 }
